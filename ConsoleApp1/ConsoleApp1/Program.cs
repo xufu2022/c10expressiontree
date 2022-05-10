@@ -19,28 +19,27 @@ namespace  ConsoleApp1;
 internal class Program
 {
     public delegate void WriteMessageFunction(string message);
-
-    public static bool WriteMessage(string message)
-    {
-        Console.WriteLine(message);
-        return true;
-    }    
-    public static bool WriteTimelyMessage(string message)
-    {
-        Console.WriteLine(message + " " + DateTime.Now);
-        return true;
-    }
-
+    
     static void Main(string[] args)
     {
         var selection = Console.ReadLine();
         //Action<string> func ;
         Func<string,bool> func ;
         if(selection =="1")
-         func = WriteTimelyMessage;
+         func = message =>
+         {
+             Console.WriteLine(message + " " + DateTime.Now);
+             return true;
+         };
         else
         {
-            func = WriteMessage;
+            func = message =>
+            {
+                {
+                    Console.WriteLine(message);
+                    return true;
+                }
+            };
         }
         ExecuteWrite(func);
     }
