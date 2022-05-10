@@ -14,38 +14,30 @@
 // feels like interface
 // is inversion of control
 
+using System.Linq.Expressions;
+
 namespace  ConsoleApp1;
 
 internal class Program
 {
-    public delegate void WriteMessageFunction(string message);
-    
+
+
     static void Main(string[] args)
     {
-        var selection = Console.ReadLine();
-        //Action<string> func ;
-        Func<string,bool> func ;
-        if(selection =="1")
-         func = message =>
-         {
-             Console.WriteLine(message + " " + DateTime.Now);
-             return true;
-         };
-        else
-        {
-            func = message =>
-            {
-                {
-                    Console.WriteLine(message);
-                    return true;
-                }
-            };
-        }
-        ExecuteWrite(func);
+        var xExpression = Expression.Parameter(typeof(int), "x");
+        var constExpression = Expression.Constant(12);
+        var const4Expression = Expression.Constant(4);
+        var greaterThan = Expression.GreaterThan(xExpression, constExpression);
+        var lessThan = Expression.LessThan(xExpression, const4Expression);
+
+        var or = Expression.Or(greaterThan, lessThan);
+
+        var expr = Expression.Lambda<Func<int, bool>>(or,false,
+            new List<ParameterExpression> { xExpression });
+        var func=expr.Compile();
+
+        Console.WriteLine(func(2));
+
     }
 
-    private static bool ExecuteWrite(Func<string, bool> func)
-    {
-       return func("Hello World");
-    }
 }
