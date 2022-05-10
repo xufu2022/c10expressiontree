@@ -20,3 +20,11 @@ Pushing Design-time to Run-time
 ## lambda 
 
 don't need name, scope or parameter names, call it anonymous function
+
+# understanding Expression Tree
+
+IEnumerable is for in-memory manipulation
+IQueryable is for interacting with external systems
+
+## types of expression
+
