@@ -16,3 +16,7 @@ LInqPad download
 Pushing Design-time to Run-time
 
 ## Action and Func;
+
+## lambda 
+
+don't need name, scope or parameter names, call it anonymous function
